@@ -1,0 +1,6 @@
+[submodule "submodules/src/github.com/gordonklaus/portaudio"]
+	path = submodules/src/github.com/gordonklaus/portaudio
+	url = https://github.com/gordonklaus/portaudio
+[submodule "submodules/src/github.com/mkb218/gosndfile"]
+	path = submodules/src/github.com/mkb218/gosndfile
+	url = https://github.com/mkb218/gosndfile/

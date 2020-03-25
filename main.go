@@ -1,10 +1,10 @@
 package main
 
 import (
+	"drum"
 	"flag"
 	"fmt"
-	drum "github.com/kellydunn/go-challenge-1"
-	sequencer "github.com/kellydunn/go-step-sequencer/sequencer"
+	"sequencer"
 	"time"
 )
 
