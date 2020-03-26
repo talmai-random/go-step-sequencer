@@ -6,14 +6,15 @@ A step sequencer implemented in Golang using portaudio and libsndfile wrappers.
 
 ## Dependencies
 
-This project requires two dependent libraries, both of which are thinly wrapped by a golang libraries.  In order for the project to successfully compile, you will need to install the development libraries of both portaudio and libsndfile for your platform.  To learn more about how to install the native libraries of these dependencies, please visit their official sites:
+This project requires three dependent libraries, which are thinly wrapped by a golang libraries.  In order for the project to successfully compile, you will need to install the development libraries of portaudio, libmpg123 and libsndfile for your platform. To learn more about how to install the native libraries of these dependencies, please visit their official sites:
 
   - [portaudio](http://www.portaudio.com/)
   - [libsndfile](http://mega-nerd.com/libsndfile/)
+  - [libmpg123](http://www.mpg123.org/index.shtml)
 
 ## Build
 
-This project is built using a [Makefile](./Makefile), which downloads dependencies, runs the go linter, the go vet tool, and finally, builds the go binary.
+This project is built using a [Makefile](./Makefile). Targets include 'build', 'test' and 'run'.
 
 ```bash
 $ make
@@ -27,14 +28,7 @@ $ ./go-step-sequencer
 
 ## Usage
 
-If you haven't built the tool as indicated above, you should be install the utility using the go tool:
-
-```bash
-$ go get github.com/kellydunn/go-step-sequencer
-$ go install github.com/kellydunn/go-step-sequencer
-```
-
-Now you should be able to use the `go-step-sequencer` utility on the command line.  Use the `--help` flag to get more information on how to use the utility.
+Use the `--help` flag to get more information on how to use the utility.
 
 ```bash
 $ go-step-sequencer --help
@@ -77,4 +71,4 @@ The synchronization protocol for the step sequencer borrows heavily from the MID
 
 The sampler uses a "Playhead" seeking strategy for playback similar to wavetable sythesizers.
 
-For playback, the sampler mixes all of the tracks encoded in the pattern and outputs them into a single Portaudio Stream.  
+For playback, the sampler mixes all of the tracks encoded in the pattern and outputs them into a single Portaudio Stream.

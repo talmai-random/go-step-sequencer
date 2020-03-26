@@ -1,45 +1,27 @@
-BUILD_ARGS=
-DEBUG_ARGS= -gcflags "-N -l"
+# Go parameters
+GOCMD=go
+GOBUILD=$(GOCMD) build
+GOCLEAN=$(GOCMD) clean
+GOTEST=$(GOCMD) test
+BINARY_NAME=go-step-sequencer
 
-# List of directories is needed in order to avoid running checks against vendor
-# If your project has multiple packages, consider moving them into a version
-# directory. For example v1/config, v1/handlers, ...
-DIRS := sequencer
+mkfile_path := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+GOPATH=$(mkfile_path):$(mkfile_path)/submodules/
 
-default: build
+all: test build
 
-debug: BUILD_ARGS+=$(DEBUG_ARGS)
-debug: build
+build: deps
+	GOPATH=$(GOPATH) $(GOBUILD) -o $(BINARY_NAME) -v
 
-# TODO Enable golint here
-build: deps fmt get vet lint test
-	go build $(BUILD_ARGS)
+test: 
+	GOPATH=$(GOPATH) $(GOTEST) -v sequencer
 
-fmt: 
-	go fmt $(DIRS:%=github.com/kellydunn/go-step-sequencer/%/...)
+clean: 
+	$(GOCLEAN)
+	rm -f $(BINARY_NAME)
 
-get:
-	go get
-
-test:
-	go test github.com/kellydunn/go-step-sequencer
-	go test $(DIRS:%=github.com/kellydunn/go-step-sequencer/%/...)
-
-bench:
-	go test -run=XXX -bench=. github.com/kellydunn/go-step-sequencer
-
-errcheck: deps
-	errcheck $(DIRS:%=github.com/kellydunn/go-step-sequencer/%/...)
-
-lint: deps
-	golint $(DIRS) 
-
-vet: deps
-	go vet $(DIRS:%=github.com/kellydunn/go-step-sequencer/%/...)
+run: build
+	./$(BINARY_NAME)
 
 deps:
-	go get github.com/kisielk/errcheck
-	go get github.com/golang/lint/golint
-
-clean:
-	go clean
+	git submodule update --init --recursive

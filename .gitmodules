@@ -4,3 +4,6 @@
 [submodule "submodules/src/github.com/mkb218/gosndfile"]
 	path = submodules/src/github.com/mkb218/gosndfile
 	url = https://github.com/mkb218/gosndfile/
+[submodule "submodules/src/github.com/bobertlo/go-mpg123"]
+	path = submodules/src/github.com/bobertlo/go-mpg123
+	url = https://github.com/bobertlo/go-mpg123

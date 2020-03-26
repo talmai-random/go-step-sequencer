@@ -1,12 +1,12 @@
 package sequencer
 
 import (
-	drum "github.com/kellydunn/go-challenge-1"
+	"drum"
 	"testing"
 )
 
 func TestLoadSample(t *testing.T) {
-	buf, err := LoadSample("../kits/0.808-alpha/kick.wav")
+	buf, err := LoadSample("../../kits/0.808-alpha/kick.wav")
 	if err != nil {
 		t.Errorf("Error loading sample %v", err)
 	}
@@ -24,7 +24,7 @@ func TestPlayTrigger(t *testing.T) {
 		t.Errorf("Error creating a sequencer %v", err)
 	}
 
-	p, err := drum.DecodeFile("../patterns/pattern_1.splice")
+	p, err := drum.DecodeFile("../../patterns/pattern_1.splice")
 	if err != nil {
 		t.Errorf("Error decoding pattern %v", err)
 	}
