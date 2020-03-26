@@ -64,9 +64,6 @@ Tempo: 120
 You should be able to hear the drum track out of your speakers now!
 
 ## SPLICE file format
-
-## File Protocol
-
   - [Header](#header)
     - ["SPLICE" File Type](#splice_file_body_type)
     - [Splice File Body Size](#splice_file_body_size)
@@ -81,7 +78,7 @@ You should be able to hear the drum track out of your speakers now!
 <a name="header"></a>
 ### Header
 
-The first section of any `.splice` file is the header sectoin.  It appears to contain a File Type and a File Body Size.
+The first section of any `.splice` file is the header sectoin.  It contains a File Type and a File Body Size.
 
 <a name="splice_file_body_type"></a>
 #### "SPLICE" File Type
