@@ -13,10 +13,10 @@ all: test build
 build: deps
 	GOPATH=$(GOPATH) $(GOBUILD) -o $(BINARY_NAME) -v
 
-test: 
+test:
 	GOPATH=$(GOPATH) $(GOTEST) -v sequencer
 
-clean: 
+clean:
 	$(GOCLEAN)
 	rm -f $(BINARY_NAME)
 
