@@ -7,3 +7,6 @@
 [submodule "submodules/src/github.com/bobertlo/go-mpg123"]
 	path = submodules/src/github.com/bobertlo/go-mpg123
 	url = https://github.com/bobertlo/go-mpg123
+[submodule "submodules/src/github.com/talmai-random/portmidi"]
+	path = submodules/src/github.com/talmai-random/portmidi
+	url = https://github.com/talmai-random/portmidi

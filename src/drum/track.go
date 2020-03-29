@@ -18,7 +18,6 @@ type Track struct {
 
 	// Note:  These attributes are intended to be used
 	//        for the "extra functionality" of providing audio playback.
-	//        see the github.com/kellydunn/go-step-sequencer project for more details.
 	Buffer   []float32
 	Playhead int
 }

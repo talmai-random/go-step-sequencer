@@ -4,6 +4,7 @@ import (
 	"drum"
 	"flag"
 	"fmt"
+	"github.com/talmai-random/portmidi"
 	"sequencer"
 	"time"
 )
@@ -65,8 +66,42 @@ func main() {
 
 	s.Start()
 
+	portmidi.Initialize()
+
+	fmt.Printf("Found %d devices\n", portmidi.CountDevices())
+	fmt.Printf("Default Input Device info: %+v\n", portmidi.Info(portmidi.DefaultInputDeviceID()))
+	fmt.Printf("Default Output Device info: %+v\n", portmidi.Info(portmidi.DefaultOutputDeviceID()))
+
+	deviceID := portmidi.DefaultInputDeviceID()
+	in, err := portmidi.NewInputStream(deviceID, 1024)
+	if err != nil {
+		fmt.Printf("An error occurred: %+v", err)
+	}
+	defer in.Close()
+
 	for {
 		time.Sleep(time.Second)
+		fmt.Printf("Found %d devices\n", portmidi.CountDevices())
+		fmt.Printf("Device info: %+v\n", portmidi.Info(portmidi.DefaultInputDeviceID()))
+		events, err := in.Read(10)
+		if err != nil {
+			fmt.Printf("An error occurred: %+v", err)
+		}
+		for _, evt := range events {
+			fmt.Printf("Event read: %+v\n", evt)
+		}
+
+		out, err := portmidi.NewOutputStream(portmidi.DefaultOutputDeviceID(), 1024, 0)
+		if err != nil {
+			fmt.Printf("An error occurred: %+v", err)
+		}
+
+		// note on events to play C major chord
+		out.WriteShort(0x90, 61, 90)
+		out.WriteShort(0x90, 64, 100)
+		out.WriteShort(0x90, 67, 110)
+
+		out.Close()
 	}
 
 }
